@@ -1,0 +1,67 @@
+input {
+    width: calc(100% - 50px);
+    height: 50px;
+    font-size: 20px;
+    text-align: right;
+    box-sizing: border-box;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.panel {
+    text-align: center;
+    width: 380px;
+    background-color: rgba(5, 2, 16, 0.76);
+    border: 1px solid #6a4399;
+    margin: 100px auto;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.buttons .pinpad {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.pinpad {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.buttons .pinpad button {
+    background-color: #babdff;
+    width: calc(25% - 6px);
+    height: 50px;
+    margin: 3px;
+    font-size: 20px;
+}
+
+
+.buttons .actions {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.buttons .actions button {
+    background-color: #b874ff;
+    margin: 3px;
+    width: 50px;
+    font-size: 20px;
+    z-index: 5;
+    height: 100%;
+}

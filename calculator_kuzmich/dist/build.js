@@ -79,21 +79,14 @@ Vue.component('calculator', {
         justNumbers: function (e) {
             if ((/[^0-9-+*/./]/.test(e.key)))
                 e.preventDefault();
-            // проверка на двойные знаки
             let symbols = ["+", "-", "*", "/"];
             if ((symbols.includes(this.fieldInput[this.fieldInput.length-1])) && (symbols.includes(e.key))) {
-                // console.log("Повторяющийся символ", this.fieldInput[this.fieldInput.length-1], e.key)
+                console.log("Повторяющийся символ", this.fieldInput[this.fieldInput.length-1], e.key)
                 e.preventDefault();
             }
-            let newInput = this.fieldInput.substr(1 ).split("")
-            let arrayWithOperators = newInput.filter(function(obj) { return symbols.indexOf(obj) >= 0; })
-
-            // ОСТАНОВИЛСЯ ЗДЕСЬ
-
-            if (arrayWithOperators)  {}
-            // else {
-            //     console.log("Неповторяющийся символ", this.fieldInput[this.fieldInput.length-1], e.key)
-            // }
+            else {
+                console.log("Неповторяющийся символ", this.fieldInput[this.fieldInput.length-1], e.key)
+            }
         },
     }
 });

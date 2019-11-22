@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="f55967a3-85a4-4426-9ec5-0681f19ee818" name="calculator" url="http://abc.dev.stocrm.ru">
-        <fileTransfer host="abc.dev.stocrm.ru" port="22" privateKey="C:\Users\Indy\.ssh\main.ppk" rootFolder="/var/www/project_dev/dev/indy/calculator2" accessType="SFTP" keyPair="true">
+        <fileTransfer host="abc.dev.stocrm.ru" port="22" privateKey="C:\Users\Indy\.ssh\main.ppk" rootFolder="/var/www/project_dev/dev/indy/" accessType="SFTP" keyPair="true">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
