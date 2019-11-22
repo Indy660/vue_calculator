@@ -1,0 +1,51 @@
+input {
+    width: 330px;
+    height: 50px;
+    margin: 10px auto;
+    font-size: 20px;
+    text-align:right;
+
+}
+.panel {
+    text-align: center;
+    width: 400px;
+    height: 320px;
+    background-color: rgba(5, 2, 16, 0.76);
+    border:1px solid #6a4399;
+    margin: 100px auto;
+    padding:auto;
+    /*position: absolute;d*/
+}
+
+p {
+
+}
+
+.buttons{
+    right: 20px;
+    position: relative;
+}
+
+.buttonVer1 {
+    background-color: #babdff;
+    width: 50px;
+    height: 50px;
+    margin: 3px;
+    font-size: 20px;
+    /*position: relative;*/
+}
+.buttonVer1 .buttonVer2 :active {
+    top: .1em;
+    left: .1em;
+    box-shadow: 0 0 0 60px rgba(0,0,0,.05) inset;
+}
+
+.buttonVer2 {
+    background-color: #b874ff;
+    margin: 3px;
+    width: 50px;
+    height: 106px;
+    position: absolute;
+    font-size: 20px;
+    z-index: 5;
+}
