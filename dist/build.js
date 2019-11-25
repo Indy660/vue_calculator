@@ -7,33 +7,44 @@
 Vue.component('calculator', {
     template: `
           <div class="panel">
-            <input onblur="this.focus()" autofocus @keyup.13="calculate()"  @keyup.187="calculate()" v-model="fieldInput" @keypress=justNumbers placeholder="0">
+          <input onblur="this.focus()" autofocus @keyup.13.187="calculate()" v-model="fieldInput" @keypress=justNumbers placeholder="0">            
             <div class="buttons">
-                <button class="buttonVer1" @click="fieldInput+='7'">7</button>
-                <button class="buttonVer1" @click="fieldInput+='8'">8</button>
-                <button class="buttonVer1" @click="fieldInput+='9'">9</button>
-                <button class="buttonVer1" @click="fieldInput+='+'">+</button>
-                <button class="buttonVer2" @click="clearInput()">C</button>
-            </div>                         
-            <div class="buttons">          
-                <button class="buttonVer1" @click="fieldInput+='4'">4</button>
-                <button class="buttonVer1" @click="fieldInput+='5'">5</button>
-                <button class="buttonVer1" @click="fieldInput+='6'">6</button>
-                <button class="buttonVer1" @click="fieldInput+='-'">-</button>
+                <div class="pinpad">
+                    <button @click="item != '=' ? fieldInput += item : calculate()"
+                     v-for="item in ['7','8','9','+','4','5','6','-','1','2','3','*','0','.','=','/']">{{ item }}</button>
+                </div>
+                <div class="actions">
+                    <button @click="clearInput()">C</button>
+                    <button @click="deleteLastIndex()">Del</button>
+                </div>
             </div>
-            <div class="buttons">
-                <button class="buttonVer1" @click="fieldInput+='1'">1</button>
-                <button class="buttonVer1" @click="fieldInput+='2'">2</button>
-                <button class="buttonVer1" @click="fieldInput+='3'">3</button>
-                <button class="buttonVer1" @click="fieldInput+='*'">*</button>
-                <button class="buttonVer2" @click="deleteLastIndex()">Del</button>
-              </div>
-              <div class="buttons">
-                <button class="buttonVer1" @click="fieldInput+='0'">0</button>
-                <button class="buttonVer1" @click="fieldInput+='.'">.</button>
-                <button class="buttonVer1" @click="calculate()">=</button>
-                <button class="buttonVer1" @click="fieldInput+='/'">/</button>
-              </div>
+<!--            <input onblur="this.focus()" autofocus @keyup.13="calculate()"  @keyup.187="calculate()" v-model="fieldInput" @keypress=justNumbers placeholder="0">-->
+<!--            <div class="buttons">-->
+<!--                <button class="buttonVer1" @click="fieldInput+='7'">7</button>-->
+<!--                <button class="buttonVer1" @click="fieldInput+='8'">8</button>-->
+<!--                <button class="buttonVer1" @click="fieldInput+='9'">9</button>-->
+<!--                <button class="buttonVer1" @click="fieldInput+='+'">+</button>-->
+<!--                <button class="buttonVer2" @click="clearInput()">C</button>-->
+<!--            </div>                         -->
+<!--            <div class="buttons">          -->
+<!--                <button class="buttonVer1" @click="fieldInput+='4'">4</button>-->
+<!--                <button class="buttonVer1" @click="fieldInput+='5'">5</button>-->
+<!--                <button class="buttonVer1" @click="fieldInput+='6'">6</button>-->
+<!--                <button class="buttonVer1" @click="fieldInput+='-'">-</button>-->
+<!--            </div>-->
+<!--            <div class="buttons">-->
+<!--                <button class="buttonVer1" @click="fieldInput+='1'">1</button>-->
+<!--                <button class="buttonVer1" @click="fieldInput+='2'">2</button>-->
+<!--                <button class="buttonVer1" @click="fieldInput+='3'">3</button>-->
+<!--                <button class="buttonVer1" @click="fieldInput+='*'">*</button>-->
+<!--                <button class="buttonVer2" @click="deleteLastIndex()">Del</button>-->
+<!--              </div>-->
+<!--              <div class="buttons">-->
+<!--                <button class="buttonVer1" @click="fieldInput+='0'">0</button>-->
+<!--                <button class="buttonVer1" @click="fieldInput+='.'">.</button>-->
+<!--                <button class="buttonVer1" @click="calculate()">=</button>-->
+<!--                <button class="buttonVer1" @click="fieldInput+='/'">/</button>-->
+<!--              </div>-->
           </div>
     `,
     data: function () {
@@ -85,12 +96,17 @@ Vue.component('calculator', {
                 // console.log("Повторяющийся символ", this.fieldInput[this.fieldInput.length-1], e.key)
                 e.preventDefault();
             }
-            let newInput = this.fieldInput.substr(1 ).split("")
-            let arrayWithOperators = newInput.filter(function(obj) { return symbols.indexOf(obj) >= 0; })
+            let newInput = this.fieldInput.substr(1 ).split("");
+            let arrayWithOperators = newInput.filter(function(obj) { return symbols.indexOf(obj) >= 0; });
 
-            // ОСТАНОВИЛСЯ ЗДЕСЬ
+            if (arrayWithOperators.length >= 2)  {
+                let operator = this.fieldInput.substr(-1);
+                this.fieldInput = this.fieldInput.slice(0, -1);
+                console.log("!", operator, this.fieldInput)
+                this.calculate()
+                this.fieldInput = this.fieldInput + operator
+            }
 
-            if (arrayWithOperators)  {}
             // else {
             //     console.log("Неповторяющийся символ", this.fieldInput[this.fieldInput.length-1], e.key)
             // }
